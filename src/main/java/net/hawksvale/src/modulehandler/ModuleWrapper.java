@@ -26,7 +26,9 @@ public abstract class ModuleWrapper implements CommandExecutor, TabExecutor, org
 		}
 	}
 
-	public abstract CommandConfig getConfig();
+	public CommandConfig getConfig() {
+		return null;
+	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
