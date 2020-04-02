@@ -19,10 +19,10 @@ public abstract class ModuleWrapper implements CommandExecutor, TabExecutor, org
 					if (wrapper.getConfig().doesDoTabCompletion() && name.isForTabbing())
 						Main.getPlugin(Main.class).getCommand(name.getName()).setTabCompleter(wrapper);
 				}
-				if (wrapper.getClass().isAnnotationPresent(Listener.class))
-					Main.getPlugin(Main.class).getServer().getPluginManager().registerEvents(wrapper,
-							Main.getPlugin(Main.class));
 			}
+			if (wrapper.getClass().isAnnotationPresent(Listener.class))
+				Main.getPlugin(Main.class).getServer().getPluginManager().registerEvents(wrapper,
+						Main.getPlugin(Main.class));
 		}
 	}
 
