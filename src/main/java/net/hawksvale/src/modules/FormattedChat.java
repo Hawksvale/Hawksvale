@@ -6,7 +6,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import com.palmergames.bukkit.towny.TownyAPI;
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
+import com.palmergames.bukkit.towny.object.Resident;
 
 import me.lucko.luckperms.LuckPerms;
 import me.lucko.luckperms.api.Contexts;
@@ -38,15 +40,22 @@ public class FormattedChat extends ModuleWrapper {
 		System.out.println("e");
 
 		Player player = event.getPlayer();
+		Resident resident = TownyAPI.getInstance().getDataSource().getResident(player.getName());
 		TownyRank rank = GetTownyRank.getTownyRank(player);
 
 		event.setCancelled(true);
 
-		BaseComponent[] components = TextComponent
-				.fromLegacyText(ChatColor.translateAlternateColorCodes('&', getPrefix(player)) + ChatColor.RESET
-						+ player.getDisplayName() + ChatColor.DARK_GRAY + " [" + rank.getColor() + rank.getName()
-						+ ChatColor.DARK_GRAY + "] // " + ChatColor.RESET + event.getMessage());
-
+		BaseComponent[] components;
+		if (resident.hasTown()) {
+			components = TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', getPrefix(player))
+					+ ChatColor.RESET + player.getDisplayName() + ChatColor.DARK_GRAY + " [" + rank.getColor()
+					+ resident.getTown().getName() + ChatColor.DARK_GRAY + "]" + ChatColor.GRAY + " // "
+					+ ChatColor.RESET + event.getMessage());
+		} else {
+			components = TextComponent
+					.fromLegacyText(ChatColor.translateAlternateColorCodes('&', getPrefix(player)) + ChatColor.RESET
+							+ player.getDisplayName() + ChatColor.GRAY + " // " + ChatColor.RESET + event.getMessage());
+		}
 		for (Player loopPlayer : Bukkit.getOnlinePlayers()) {
 			loopPlayer.spigot().sendMessage(components);
 		}
