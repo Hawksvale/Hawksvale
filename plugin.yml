@@ -1,0 +1,13 @@
+name: Hawksvale
+version: 1.0
+api-version: 1.15
+author: Appleiris, LeoDog896
+main: net.hawksvale.src.Main
+description: Hawksvale custom plugin
+
+commands:
+  townycheck:
+     description: Checks if you're in town!
+  ref:
+     description: Helps you say who referred you.
+     aliases: [referral]
