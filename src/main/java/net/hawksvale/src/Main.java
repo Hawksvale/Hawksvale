@@ -7,6 +7,7 @@ import net.hawksvale.src.modules.AddDefaultRanks;
 import net.hawksvale.src.modules.FormattedChat;
 import net.hawksvale.src.modules.Referrer;
 import net.hawksvale.src.modules.Respawn;
+import net.hawksvale.src.modules.Sit;
 
 public class Main extends JavaPlugin {
 
@@ -14,7 +15,8 @@ public class Main extends JavaPlugin {
 		ModuleWrapper.register(new Respawn(),
 				new AddDefaultRanks(),
 				new Referrer(),
-				new FormattedChat());
+				new FormattedChat(),
+				new Sit());
 	}
 	
 }

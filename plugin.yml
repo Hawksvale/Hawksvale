@@ -11,3 +11,5 @@ commands:
   ref:
      description: Helps you say who referred you.
      aliases: [referral]
+  sit:
+     description: Makes the player sit
